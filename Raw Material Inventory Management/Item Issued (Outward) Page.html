@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Item Issued (Outward) Page</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <h3 style="text-align: center; color: rgb(133, 133, 133);">Raw Material Inventory Management </h3>
+        </nav>
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="../../index3.html" class="brand-link">
+                <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                    style="opacity: .8">
+                <span class="brand-text font-weight-light">AdminLTE 3</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="dist/img/naveen.jpg" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">Naveen Paswan</a>
+                    </div>
+                </div>
+
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                        <li class="nav-item">
+                            <a href="Item Management Page.html" class="nav-link">
+                                <i class="nav-icon fas fa-pen-fancy"></i>
+                                <p>Item Management Page</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="Item Received (Inward) Page.html" class="nav-link">
+                                <i class="nav-icon fas fa-download"></i>
+                                <p>Item Received (Inward)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="Item Issued (Outward) Page.html" class="nav-link">
+                                <i class="nav-icon fas fa-upload"></i>
+                                <p>Item Issue (Outward)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="Item Report Page.html" class="nav-link">
+                                <i class="nav-icon fas fa-clipboard"></i>
+                                <p>Item Report Page</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1><i class="nav-icon fas fa-upload" style="margin-right: 10px;"></i>Item Issued (Outward)
+                                Page</h1>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <table id="example2" class="table table-bordered table-hover">
+                                        <div class="container">
+                                            <form id="mngPage" method="post">
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-3 text-center my-auto"> Issue No
+                                                        : </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" id="IssueNo" class="form-control" placeholder="Enter Issue Number"
+                                                            onchange="getItemFromIssueNo()">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-3 text-center m-auto"> Issue Date
+                                                        : </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="date" id="IssueDate" class="form-control"
+                                                            placeholder="Enter Issue Date">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-3 text-center m-auto"> Item ID : </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" step="0.001" id="ItemID"
+                                                            class="form-control" placeholder="Enter Identification number of the Item" onchange="getItemName()">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-3 text-center m-auto"> Quantity : </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="number" id="QtyIssued" class="form-control" maxlength="10"
+                                                            placeholder="Enter upto 10 Characters">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <div class="text-center" style="margin-top: 20px;">
+                                                <button type="button" class="btn btn-lg btn-primary" id="new"
+                                                    onclick="newForm()">New</button>
+                                                <button type="button" class="btn btn-lg btn-primary" id="save"
+                                                    onclick="saveData()">Save</button>
+                                                <button type="button" class="btn btn-lg btn-primary" id="edit"
+                                                    onclick="editData()">Edit</button>
+                                                <button type="button" class="btn btn-lg btn-primary" id="change"
+                                                    onclick="changeData()">Change</button>
+                                                <button type="button" class="btn btn-lg btn-primary" id="reset"
+                                                    onclick="resetForm()">Reset</button>
+                                            </div>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <div class="text-center">
+                                                <button type="button" class="btn btn-lg btn-primary" id="first"
+                                                    onclick="getFirst()">First</button>
+                                                <button type="button" class="btn btn-lg btn-primary" id="prev"
+                                                    onclick="getPrev()">Previous</button>
+                                                <button type="button" class="btn btn-lg btn-primary" id="next"
+                                                    onclick="getNext()">Next</button>
+                                                <button type="button" class="btn btn-lg btn-primary" id="last"
+                                                    onclick="getLast()">Last</button>
+                                            </div>
+                                        </div>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+                <b>Version</b> 3.2.0
+            </div>
+            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
+            reserved.
+        </footer>
+        <div id="hrFooter"></div>
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+
+    <script type="text/javascript" src="http://login2explore.com/jpdb/resources/js/0.0.4/jpdb-commons.js"></script>
+    <script type="text/javascript" src="Item Issued (Outward) Page.js"></script>
+
+    <script type="text/javascript" src="resources/js/common-js.js"></script>
+
+</body>
+
+</html>
